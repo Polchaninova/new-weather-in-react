@@ -113,7 +113,7 @@ export default function WeatherSearch() {
             Kharkov
           </button>
           <button
-            className="navbar-brand"
+            className="navbar-brand btn"
             id="navbar-lv"
             onClick={(e) => {
               setCity("Lviv");
@@ -123,7 +123,7 @@ export default function WeatherSearch() {
             Lviv
           </button>
           <button
-            className="navbar-brand"
+            className="navbar-brand btn"
             id="navbar-od"
             onClick={(e) => {
               setCity("Odessa");
@@ -133,7 +133,7 @@ export default function WeatherSearch() {
             Odessa
           </button>
           <button
-            className="navbar-brand"
+            className="navbar-brand btn"
             id="navbar-ky"
             onClick={(e) => {
               setCity("Kyiv");
