@@ -72,7 +72,7 @@ export default function WeatherSearch() {
     let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(displayWeather);
   }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // eslint-disable-next-line react-hooks/rules-of-hooks, react-hooks/exhaustive-deps
   useEffect(getCurrentPosition, []);
 
   function getCurrentPosition() {
@@ -116,11 +116,11 @@ export default function WeatherSearch() {
             className="navbar-brand btn"
             id="navbar-kh"
             onClick={(e) => {
-              setCity("Kharkov");
-              handleSubmit(e, "Kharkov");
+              setCity("Kharkiv");
+              handleSubmit(e, "Kharkiv");
             }}
           >
-            Kharkov
+            Kharkiv
           </button>
           <button
             className="navbar-brand btn"
@@ -147,7 +147,7 @@ export default function WeatherSearch() {
             id="navbar-ky"
             onClick={(e) => {
               setCity("Kyiv");
-              handleSubmit(e);
+              handleSubmit(e, Kyiv);
             }}
           >
             Kyiv
@@ -209,8 +209,7 @@ export default function WeatherSearch() {
           <source src="video/pexels-nebo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        {/* <h1>Next Days</h1>
-        <div className="weather-forecast" id="forecast"></div> */}
+
         <NextDays coords={coords} />
       </div>
       <footer>

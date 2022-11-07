@@ -55,6 +55,7 @@ export function NextDays({ coords }) {
     let apiEndpoint = "https://api.openweathermap.org/data/2.5/forecast";
     let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(displayForecast);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
