@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { NextDays } from "./NextDays";
 
 export default function WeatherSearch() {
   const [city, setCity] = useState("Kharkiv");
   const [weather, setWeather] = useState({});
+  const [coords, setCoords] = useState();
   let [temperature, setTemperature] = useState(12);
   let weekDay = getWeekDay(new Date());
   let curentTime = getCurrentTime();
@@ -19,8 +21,7 @@ export default function WeatherSearch() {
     });
     setCity(response.data.name);
     setTemperature = Math.round(response.data.main.temp);
-    getForecast(response.data.coord);
-   
+    setCoords(response.data.coord);
   }
   function getCurrentTime() {
     let currentDate = new Date();
@@ -42,7 +43,6 @@ export default function WeatherSearch() {
     ];
     return days[date.getDay()];
   }
-
 
   function convertToFahrenheit(event) {
     event.preventDefault();
@@ -74,9 +74,11 @@ export default function WeatherSearch() {
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(getCurrentPosition, []);
+
   function getCurrentPosition() {
     navigator.geolocation.getCurrentPosition(retrievePosition);
   }
+
   function updateCity(event) {
     setCity(event.target.value);
   }
@@ -104,65 +106,7 @@ export default function WeatherSearch() {
       </button>
     </form>
   );
-  let days = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
-  function displayForecast(response) {
-    let list = response.data.list;
 
-    let currentDays = {};
-    list.forEach((item) => {
-      let day = days[new Date(Date.parse(item.dt_txt)).getDay()];
-      if (!currentDays[day]) {
-        currentDays[day] = {
-          tempMax: item.main.temp_max,
-          tempMin: item.main.temp_min,
-          items: [item],
-        };
-      } else {
-        currentDays[day] = {
-          tempMax: Math.max(item.main.temp_max, currentDays[day].tempMax),
-          tempMin: Math.min(item.main.temp_min, currentDays[day].tempMin),
-          items: currentDays[day].items.concat(item),
-        };
-      }
-    });
-    let forecast = `<div class="row">`;
-    Object.keys(currentDays).forEach(function (day) {
-      let tempMax = Math.round(currentDays[day].tempMax);
-      let tempMin = Math.round(currentDays[day].tempMin);
-      let items = currentDays[day].items;
-      let middleItem = items[Math.floor(items.length / 2)];
-      let iconCode = middleItem.weather[0].icon;
-
-      var iconUrl = getIcon(iconCode);
-      forecast =
-        forecast +
-        `
-<div class="col-2">
-  <div class="weather-forecast-date">${day}</div>
-      
-      <img src="${iconUrl}"/>
-      <br />
-      <div class="weather-forecast-temperatures">
-        <span class="weather-forecast-temperature-max">${tempMax}° </span>
-        <span class="weather-forecast-temperature-min">${tempMin}° </span>
-      </div>
-  </h2>
-</div>`;
-    });
-    forecast = forecast + `</div>`;
-  }
-  function getForecast(coords) {
-    let latitude = coords.lat;
-    let longitude = coords.lon;
-    let units = "metric";
-    let apiKey = "12b765e58ad1df7247a7dd8bf64421e7";
-    let apiEndpoint = "https://api.openweathermap.org/data/2.5/forecast";
-    let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(displayForecast);
-  }
-  function getImageUrl(iconCode) {
-    return "http://openweathermap.org/img/w/" + iconCode + ".png";
-  }
   return (
     <>
       <div className="container">
@@ -209,7 +153,6 @@ export default function WeatherSearch() {
             Kyiv
           </button>
         </nav>
-
         <div className="mt-5">
           <h1>Today in {city}</h1>
           <ul>
@@ -266,9 +209,9 @@ export default function WeatherSearch() {
           <source src="video/pexels-nebo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-        <h1>Next Days</h1>
-        <div className="weather-forecast" id="forecast"></div>
+        {/* <h1>Next Days</h1>
+        <div className="weather-forecast" id="forecast"></div> */}
+        <NextDays coords={coords} />
       </div>
       <footer>
         <svg

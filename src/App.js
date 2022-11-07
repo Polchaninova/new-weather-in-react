@@ -1,13 +1,11 @@
-import './App.css';
-import SearchNav from "./SearchNav"
+import "./App.css";
+import SearchNav from "./SearchNav";
 
 function App() {
   return (
     <div className="App">
-      <SearchNav/>
-      <header className="App-header">
-        Happy
-      </header>
+      <SearchNav />
+      <header className="App-header">Happy</header>
     </div>
   );
 }
