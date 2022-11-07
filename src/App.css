@@ -1,0 +1,98 @@
+h1 {
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 20px;
+  }
+  body,
+  html {
+    height: 100%;
+  }
+  .container {
+    padding: 25px 50px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: aliceblue;
+    height: 100%;
+  }
+  .divider {
+    position: relative;
+  }
+  .divider::after {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    content: "";
+    display: block;
+    border-left: 2px solid #ddd;
+    height: 100%;
+  }
+  .Shower {
+    font-size: 15px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .Humidity {
+    padding-top: 30px;
+    font-size: 15px;
+    color: aliceblue;
+    font-weight: 400;
+  }
+  .video-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+  .weather-forecast {
+    padding-top: 25px;
+    font-size: 16px;
+  }
+  .units {
+    font-size: 20px;
+    position: relative;
+    top: -34px;
+  }
+  li {
+    list-style-type: none;
+  }
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .temperature {
+    font-size: 95px;
+    font-weight: 700px;
+    text-align: center;
+    color: aliceblue;
+    
+  }
+  .navbar-brand btn{
+   display: flex;
+   justify-content: space-between;
+  }
+  footer {
+    text-align: center;
+    font-weight: 600px;
+    font-size: 15px;
+  }
+  .githubLink {
+    color: aliceblue;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .weather-forecast-temperature-min {
+    color: rgb(213, 211, 211);
+  }
+  
+  .imag-cast {
+    /* transform: scale(3);
+    transform-origin: top left; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px;
+    height: 250px;
+
+  }
